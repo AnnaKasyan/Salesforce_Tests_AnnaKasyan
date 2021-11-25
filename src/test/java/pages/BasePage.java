@@ -1,16 +1,13 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
     WebDriver driver;
     WebDriverWait wait;
-    protected static final String URL = "https://tms-e.lightning.force.com/lightning/page/home";
+    protected static final String BASE_URL = "https://tms-e.my.salesforce.com/";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
