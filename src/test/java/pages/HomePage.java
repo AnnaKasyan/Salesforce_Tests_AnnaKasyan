@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
-    final static By NOTIFICATION_BUTTON = By.cssSelector(".headerButtonBody");
     final static By QUARTERLY_PERFORMANCE_DATE = By.cssSelector("[data-aura-class='uiOutputText']");
-    final static By ACCOUNTS_MENU_LINK = By.cssSelector("a[title='Accounts']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -24,8 +22,4 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public AccountsPage clickAccountMenuLink() {
-        driver.findElement(ACCOUNTS_MENU_LINK).click();
-        return new AccountsPage(driver);
-    }
 }

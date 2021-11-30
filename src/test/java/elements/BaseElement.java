@@ -1,14 +1,19 @@
 package elements;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 
-public abstract  class BaseElement {
-        WebDriver driver;
-        WebDriverWait wait;
+public abstract class BaseElement {
 
-        public  BaseElement(WebDriver driver) {
-            this.driver = driver;
-            wait = new WebDriverWait(driver, 10);
-        }
+    WebDriver driver;
+    protected String label;
+
+    public BaseElement(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void scrollIntoView(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
 }

@@ -1,50 +1,45 @@
 package modals;
 
+import elements.Dropdown;
 import elements.Input;
+import elements.TextArea;
+import models.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.AccountsPage;
 
 public class AccountModal extends BaseModal {
 
-    final String accountNameLocator = "//lightning-formatted-text[normalize-space()='%s']";
-    final String websiteLocator = "//lightning-formatted-url[@data-output-element-id='output-field']//a[normalize-space()='%s']";
-    final String phoneLocator = "//lightning-formatted-phone[@data-output-element-id='output-field']//a[contains(text(),'%s')]";
-    final String employeesLocator = "//lightning-formatted-number[@data-output-element-id='output-field']";
-
-
+    final By SAVE_BUTTON = By.cssSelector("button[title='Save']");
 
     public AccountModal(WebDriver driver) {
         super(driver);
     }
 
-    public void fillForm() {
-        new Input(driver, "Account Name").write("Anna");
-        new Input(driver, "Website").write("my site");
-        new Input(driver, "Phone").write("+3445813456");
-        new Input(driver, "Employees").write("112");
-        new Input(driver, "Billing City").write("Minsk");
-        new Input(driver, "Billing State/Province").write("Minsk");
-        new Input(driver, "Billing Zip/Postal Code").write("210420");
-        new Input(driver, "Billing Country").write("Belarus");
-        new Input(driver, "Shipping City").write("Minsk");
-        new Input(driver, "Shipping State/Province").write("Minsk");
-        new Input(driver, "Shipping Zip/Postal Code").write("210420");
-        new Input(driver, "Shipping Country").write("Belarus");
+    public AccountModal fillForm(Account account) {
+        new Input(driver, "Account Name").writeAccountsFields(account.getAccountName());
+        new Input(driver, "Website").writeAccountsFields(account.getWebsite());
+        new Input(driver, "Phone").writeAccountsFields(account.getPhone());
+        new Input(driver, "Employees").writeAccountsFields(account.getEmployees());
+        new Input(driver, "Billing City").writeAccountsFields(account.getBillingCity());
+        new Input(driver, "Billing State/Province").writeAccountsFields(account.getBillingStateProvince());
+        new Input(driver, "Billing Zip/Postal Code").writeAccountsFields(account.getBillingZipPostalCode());
+        new Input(driver, "Billing Country").writeAccountsFields(account.getBillingCountry());
+        new Input(driver, "Shipping City").writeAccountsFields(account.getShippingCity());
+        new Input(driver, "Shipping State/Province").writeAccountsFields(account.getShippingStateProvince());
+        new Input(driver, "Shipping Zip/Postal Code").writeAccountsFields(account.getShippingZipPostalCode());
+        new Input(driver, "Shipping Country").writeAccountsFields(account.getShippingCountry());
+        new TextArea(driver, "Description").writeAccountsFields(account.getDescription());
+        new TextArea(driver, "Billing Street").writeAccountsFields(account.getBillingStreet());
+        new TextArea(driver, "Shipping Street").writeAccountsFields(account.getShippingStreet());
+        new Dropdown(driver, "Type").selectOption(account.getType().getName());
+        new Dropdown(driver, "Industry").selectOption(account.getIndustry().getName());
+        return this;
     }
 
-    public String getAccountName(String name) {
-        return driver.findElement(By.xpath(String.format(accountNameLocator, name))).getText();
+    public AccountsPage clickSaveButton() {
+        driver.findElement(SAVE_BUTTON).click();
+        return new AccountsPage(driver);
     }
 
-    public String getWebsite(String website) {
-        return driver.findElement(By.xpath(String.format(websiteLocator, website))).getText();
-    }
-
-    public String getPhone(String phoneNumber) {
-        return driver.findElement(By.xpath(String.format(phoneLocator, phoneNumber))).getText();
-    }
-
-    public String getEmployees(String numberOfEmployees) {
-        return driver.findElement(By.xpath(String.format(employeesLocator, numberOfEmployees))).getText();
-    }
 }
