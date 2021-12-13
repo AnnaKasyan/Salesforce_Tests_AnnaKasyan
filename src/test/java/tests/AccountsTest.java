@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AccountDetailsPage;
 import pages.AccountsPage;
-import utils.TestAccounts;
+import utils.TestDataHelper;
 
 import static org.testng.Assert.assertEquals;
 
@@ -30,11 +30,11 @@ public class AccountsTest extends BaseTest {
 
         accountsPage.open()
                 .clickNewButton()
-                .fillForm(TestAccounts.testAccountWithAllData())
+                .fillForm(TestDataHelper.getTestAccountWithAllData())
                 .clickSaveButton()
                 .messageAboutCreatedAccountOnDisplay();
         Account actualAccountDetailsInfo = accountsPage.openDetailsAccount()
                 .getAccountDetailsInfo();
-        assertEquals(actualAccountDetailsInfo, TestAccounts.testAccountWithAllData(), "The test account data must be equal to the data in the 'Details' section");
+        assertEquals(actualAccountDetailsInfo, TestDataHelper.getTestAccountWithAllData(), "The test account data must be equal to the data in the 'Details' section");
     }
 }

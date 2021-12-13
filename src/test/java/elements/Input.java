@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class Input extends BaseElement {
 
     protected String inputName;
-    final String inputElementLocatorForAccounts = "//div[@role='dialog' and @aria-modal='true']//*[text()= '%s']" + "/ancestor::div[contains(@class, 'uiInput')]//input";
-    final String inputElementLocatorForContacts = "//*[text()= '%s']/parent::lightning-input//input";
+    final String inputElementLocator = "//div[@role='dialog' and @aria-modal='true']//*[text()= '%s']" + "/ancestor::div[contains(@class, 'uiInput')]//input";
 
 
     public Input(WebDriver driver, String inputName) {
@@ -15,18 +14,13 @@ public class Input extends BaseElement {
         this.inputName = inputName;
     }
 
-    public void writeAccountsFields(String text) {
+    public void write(String text) {
         driver.findElement(By
-                .xpath(String.format(inputElementLocatorForAccounts, inputName))).sendKeys(text);
-    }
-
-    public void writeContactsFields(String text) {
-        driver.findElement(By
-                .xpath(String.format(inputElementLocatorForContacts, inputName))).sendKeys(text);
+                .xpath(String.format(inputElementLocator, inputName))).sendKeys(text);
     }
 
     public void clear() {
         driver.findElement(By
-                .xpath(String.format(inputElementLocatorForAccounts, inputName))).clear();
+                .xpath(String.format(inputElementLocator, inputName))).clear();
     }
 }

@@ -7,7 +7,6 @@ public class TextArea extends BaseElement {
 
     protected String textarea;
     final String textareaElementLocatorForAccounts = "//div[@class='full forcePageBlock forceRecordLayout']//following::span[text() = '%s'] /ancestor::div[contains(@class, 'uiInput')]//textarea";
-    final String textareaStreetElementLocator = "//textarea[@name='street']";
 
 
     public TextArea(WebDriver driver, String textarea) {
@@ -15,13 +14,8 @@ public class TextArea extends BaseElement {
         this.textarea = textarea;
     }
 
-    public void writeAccountsFields(String text) {
+    public void write(String text) {
         driver.findElement(By
                 .xpath(String.format(textareaElementLocatorForAccounts, textarea))).sendKeys(text);
-    }
-
-    public void writeContactsFields(String text) {
-        driver.findElement(By
-                .xpath(String.format(textareaStreetElementLocator))).sendKeys(text);
     }
 }

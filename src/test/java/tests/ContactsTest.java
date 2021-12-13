@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.ContactsPage;
 import pages.HomePage;
-import utils.TestContacts;
+import utils.TestDataHelper;
 
 import static org.testng.Assert.assertEquals;
 
@@ -29,10 +29,10 @@ public class ContactsTest extends BaseTest {
     public void createContact() {
         contactsPage.open()
                 .clickNewButton()
-                .fillForm(TestContacts.testContactWithAllData())
+                .fillForm(TestDataHelper.getTestContactWithAllData())
                 .clickSaveButton();
-        Contact actualContactDetailsInfo = contactsPage.openDetailsAccount()
+        Contact actualContactDetailsInfo = contactsPage.openDetailsContact()
                 .getContactDetailInfo();
-        assertEquals(actualContactDetailsInfo, TestContacts.testContactWithAllData());
+        assertEquals(actualContactDetailsInfo, TestDataHelper.getTestContactWithAllData());
     }
 }
