@@ -25,20 +25,20 @@ public class AccountsPage extends BasePage {
     }
 
     public AccountModal clickNewButton() {
+        log.info("clicking new button");
         driver.findElement(NEW_BUTTON).click();
-        log.info("click new button");
         return new AccountModal(driver);
     }
 
     public AccountDetailsPage openDetailsAccount() {
+        log.info("clicking open details account");
         driver.findElement(DETAILS_TAB).click();
-        log.info("click open details account");
         return new AccountDetailsPage(driver);
     }
 
     public AccountsPage messageAboutCreatedAccountOnDisplay() {
+        log.info("waiting message about created account on display");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-aura-class='forceToastMessage']")));
-        log.info("wait message about created account on display");
         return new AccountsPage(driver);
     }
 }

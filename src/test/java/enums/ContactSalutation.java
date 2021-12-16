@@ -1,7 +1,9 @@
 package enums;
 
 import elements.LightningFormattedElement;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public enum ContactSalutation {
 
     MR("Mr."),
@@ -10,7 +12,7 @@ public enum ContactSalutation {
     DR("Dr."),
     PROF("Prof.");
 
-    private String name;
+    private final String name;
 
     ContactSalutation(String name) {
         this.name = name;
@@ -21,6 +23,7 @@ public enum ContactSalutation {
     }
 
     public static ContactSalutation fromString(LightningFormattedElement type) {
+        log.info("getting text about contact salutation");
         for (ContactSalutation contactSalutation : ContactSalutation.values()) {
             if (contactSalutation.getName().equals(type)) {
                 return contactSalutation;

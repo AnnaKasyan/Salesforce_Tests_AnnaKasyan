@@ -23,14 +23,14 @@ public class ContactsPage extends BasePage {
     }
 
     public ContactModal clickNewButton() {
+        log.info("clicking new button");
         driver.findElement(NEW_BUTTON).click();
-        log.info("click new button");
         return new ContactModal(driver);
     }
 
     public ContactDetailsPage openDetailsContact() {
+        log.info("clicking open details contact");
         driver.findElement(DETAILS_TAB).click();
-        log.info("click open details contact");
         return new ContactDetailsPage(driver);
     }
 }

@@ -1,7 +1,9 @@
 package enums;
 
 import elements.LightningFormattedElement;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public enum AccountIndustry {
 
     AGRICULTURE("Agriculture"),
@@ -38,7 +40,7 @@ public enum AccountIndustry {
     UTILITIES("Utilities");
 
 
-    private String name;
+    private final String name;
 
     AccountIndustry(String name) {
         this.name = name;
@@ -49,6 +51,7 @@ public enum AccountIndustry {
     }
 
     public static AccountIndustry fromString(LightningFormattedElement industry) {
+        log.info("getting text about account industry");
         for (AccountIndustry accountIndustry : AccountIndustry.values()) {
             if (accountIndustry.getName().equals(industry)) {
                 return accountIndustry;

@@ -28,12 +28,12 @@ public class LoginPage extends BasePage {
     }
 
     public HomePage login(String email, String password) {
+        log.info("setting email");
         driver.findElement(EMAIL_INOUT).sendKeys(email);
-        log.info("input email");
+        log.info("setting password");
         driver.findElement(PASSWORD_INOUT).sendKeys(password);
-        log.info("input password");
+        log.info("clicking login button");
         driver.findElement(LOGIN_BUTTON).click();
-        log.info("click login button");
         return new HomePage(driver);
     }
 }

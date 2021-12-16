@@ -38,53 +38,39 @@ public class ContactModal extends BaseModal {
     public ContactModal fillForm(Contact contact) {
 
         write(FIRST_NAME, contact.getFirstName());
-        log.info("input first name");
         write(MIDDLE_NAME, contact.getMiddleName());
-        log.info("input middle name");
         write(LAST_NAME, contact.getLastName());
-        log.info("input last name");
         write(SUFFIX, contact.getSuffix());
-        log.info("input suffix");
         write(TITLE, contact.getTitle());
-        log.info("input title");
         write(EMAIL, contact.getEmail());
-        log.info("input email");
         write(PHONE, contact.getPhone());
-        log.info("input phone number");
         write(MOBILE, contact.getMobile());
-        log.info("input mobile phone number");
         write(DEPARTMENT, contact.getDepartment());
-        log.info("input department");
         write(FAX, contact.getFax());
-        log.info("input fax");
         write(MAILING_CITY, contact.getMailingCity());
-        log.info("input mailing city");
         write(MAILING_STATE_PROVINCE, contact.getMailingStateProvince());
-        log.info("input mailing state province");
         write(MAILING_ZIP_POSTAL_CODE, contact.getMailingZipPostalCode());
-        log.info("input mailing zip/postal code");
         write(MAILING_COUNTRY, contact.getMailingCountry());
-        log.info("input mailing country");
         write(MAILING_STREET, contact.getMailingStreet());
-        log.info("input mailing street");
         new Dropdown(driver, "Salutation").selectOption(contact.getSalutation().getName());
         selectAccountName();
         return this;
     }
 
     public void write(By locator, String text) {
+        log.info(String.format("setting %s into %s input", text, locator));
         driver.findElement(locator).sendKeys(text);
     }
 
     public void selectAccountName() {
+        log.info("selecting account name");
         Actions builder = new Actions(driver);
         builder.click(driver.findElement(ACCOUNT_NAME)).sendKeys(Keys.ENTER).build();
-        log.info("select account name");
     }
 
     public ContactsPage clickSaveButton() {
+        log.info("clicking save button");
         driver.findElement(SAVE_BUTTON).click();
-        log.info("click save button");
         return new ContactsPage(driver);
     }
 }
