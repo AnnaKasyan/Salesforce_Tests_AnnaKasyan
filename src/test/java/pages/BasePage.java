@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class BasePage {
     WebDriver driver;
     WebDriverWait wait;
-    protected static final String URL = "https://tms-e.lightning.force.com/lightning/page/home";
+    protected static final String BASE_URL = "https://tms-e.my.salesforce.com/";
+    final By NEW_BUTTON = By.cssSelector("a[title='New']");
+    final By DETAILS_TAB = By.xpath("//div[contains(@class,'active')]//*[@id='detailTab__item']");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -18,9 +20,10 @@ public abstract class BasePage {
     }
 
     public abstract boolean isPageOpened();
+
     public abstract BasePage open();
 
-    protected  boolean isElementPresent (By locator) {
+    protected boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;
